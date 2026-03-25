@@ -11,7 +11,7 @@
 <p>
   <a href="https://www.npmjs.com/package/authstack"><img src="https://img.shields.io/npm/v/authstack.svg?style=flat-square" alt="npm version" /></a>
   <a href="https://www.npmjs.com/package/authstack"><img src="https://img.shields.io/npm/dm/authstack.svg?style=flat-square" alt="downloads" /></a>
-  <a href="https://github.com/yourusername/authstack/blob/main/LICENSE"><img src="https://img.shields.io/npm/l/authstack.svg?style=flat-square" alt="license" /></a>
+  <a href="https://github.com/AKASHPATEL123500/AuthStack/blob/main/LICENSE"><img src="https://img.shields.io/npm/l/authstack.svg?style=flat-square" alt="license" /></a>
   <a href="#"><img src="https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen?style=flat-square" alt="node" /></a>
   <a href="#"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="PRs welcome" /></a>
 </p>
