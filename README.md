@@ -1,124 +1,197 @@
-# AuthStack
-
 <div align="center">
+
+<img src="https://raw.githubusercontent.com/AKASHPATEL123500/AuthStack/main/assets/logo.png" alt="AuthStack" width="120" />
 
 <h1>🔐 AuthStack</h1>
 
-<p><strong>Production-ready, plug-and-play authentication library for Node.js & Express.</strong></p>
-
-<p>Signup · Signin · Signout · OTP · 2FA · Passkeys · Refresh Token Rotation · Session Tracking</p>
+<p><strong>The last auth library you'll ever need.</strong></p>
 
 <p>
-  <a href="https://www.npmjs.com/package/authstack"><img src="https://img.shields.io/npm/v/authstack.svg?style=flat-square" alt="npm version" /></a>
-  <a href="https://www.npmjs.com/package/authstack"><img src="https://img.shields.io/npm/dm/authstack.svg?style=flat-square" alt="downloads" /></a>
-  <a href="https://github.com/AKASHPATEL123500/AuthStack/blob/main/LICENSE"><img src="https://img.shields.io/npm/l/authstack.svg?style=flat-square" alt="license" /></a>
-  <a href="#"><img src="https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen?style=flat-square" alt="node" /></a>
-  <a href="#"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="PRs welcome" /></a>
+Production-ready authentication for Node.js & Express.<br/>
+Bring your own models. We handle the rest.
+</p>
+
+<p>
+  <a href="https://www.npmjs.com/package/authstack">
+    <img src="https://img.shields.io/npm/v/authstack.svg?style=for-the-badge&color=cb3837&logo=npm" alt="npm version" />
+  </a>
+  <a href="https://www.npmjs.com/package/authstack">
+    <img src="https://img.shields.io/npm/dm/authstack.svg?style=for-the-badge&color=blue" alt="downloads" />
+  </a>
+  <a href="https://github.com/AKASHPATEL123500/AuthStack/blob/main/LICENSE">
+    <img src="https://img.shields.io/npm/l/authstack.svg?style=for-the-badge&color=green" alt="license" />
+  </a>
+  <a href="#">
+    <img src="https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen?style=for-the-badge&logo=nodedotjs" alt="node" />
+  </a>
+  <a href="#">
+    <img src="https://img.shields.io/badge/PRs-welcome-brightgreen?style=for-the-badge" alt="PRs welcome" />
+  </a>
+</p>
+
+<p>
+  <a href="#-features">Features</a> •
+  <a href="#-installation">Installation</a> •
+  <a href="#-quick-start">Quick Start</a> •
+  <a href="#-api-reference">API Reference</a> •
+  <a href="#-security">Security</a> •
+  <a href="#-faq">FAQ</a>
 </p>
 
 </div>
 
+<br/>
+
 ---
 
-## Why AuthStack?
+## 😩 The Problem
 
-Building auth from scratch is painful. JWT, OTP, 2FA, Passkeys, refresh token rotation, session tracking, brute-force protection — most projects need all of this, but implementing it correctly every time is repetitive and error-prone.
+Every Node.js project needs auth. And every time, you write the same code:
 
-**AuthStack gives you all of it in one library.**
-
-You bring your own Mongoose models, Redis client, and mail function. AuthStack handles every auth flow — securely, correctly, and with zero hardcoded config.
-
-```js
-const auth = new AuthStack({ userModel: User, ...config });
-
-app.post("/signup", auth.signup());
-app.post("/signin", auth.signin());
-app.post("/signout", auth.signout());
-// and 13 more routes — all production-ready
+```
+❌ Signup validation
+❌ Password hashing
+❌ JWT tokens
+❌ Refresh token rotation
+❌ OTP via email
+❌ Forgot password flow
+❌ 2FA with QR codes
+❌ Passkeys (WebAuthn)
+❌ Session tracking
+❌ Brute force protection
 ```
 
----
-
-## Table of Contents
-
-- [Features](#features)
-- [Requirements](#requirements)
-- [Installation](#installation)
-- [Quick Start](#quick-start)
-- [Configuration Reference](#configuration-reference)
-- [API Reference](#api-reference)
-- [User Model Schema](#user-model-schema)
-- [Session Model Schema](#session-model-schema)
-- [Error Handling](#error-handling)
-- [Security](#security)
-- [FAQ](#faq)
-- [License](#license)
+It works. But it takes days. And it's easy to get wrong.
 
 ---
 
-## Features
-
-| Feature                   | Description                                                        |
-| ------------------------- | ------------------------------------------------------------------ |
-| ✅ Signup                 | Full validation — name, username, email, password strength         |
-| ✅ Signin                 | Brute-force protection, account lockout, timing-safe comparison    |
-| ✅ Signout                | Clears cookies, removes session from DB                            |
-| ✅ Refresh Token Rotation | Old token invalidated on every refresh — prevents token reuse      |
-| ✅ Email OTP              | Send & verify OTP for email confirmation                           |
-| ✅ Forget Password        | OTP-based password reset flow                                      |
-| ✅ Reset Password         | Secure password update after OTP verification                      |
-| ✅ TOTP 2FA               | Google Authenticator compatible — generate secret, QR code, verify |
-| ✅ 2FA Login              | Separate flow for users with 2FA enabled                           |
-| ✅ Passkey Registration   | WebAuthn / FIDO2 — register biometric credentials                  |
-| ✅ Passkey Login          | Password-free login with registered passkeys                       |
-| ✅ Session Tracking       | Every login tracked with device, IP, user agent                    |
-| ✅ Device Fingerprinting  | Detects device info on every session creation                      |
-| ✅ HTTP-only Cookies      | Secure, SameSite cookies — XSS safe                                |
-| ✅ Zero Hardcoded Config  | Everything injected — works with any project                       |
-
----
-
-## Requirements
-
-- **Node.js** >= 18.0.0
-- **Express.js** >= 4.x
-- **Mongoose** >= 7.x
-- **Redis** (for OTP and session storage)
-- A mail sending function (Nodemailer, Resend, SendGrid — anything works)
-
----
-
-## Installation
+## ✅ The Solution
 
 ```bash
 npm install authstack
 ```
 
+```js
+const auth = new AuthStack({ userModel: User, ...config });
+
+app.post("/signup", auth.signup()); // ✅ done
+app.post("/signin", auth.signin()); // ✅ done
+app.post("/signout", auth.signout()); // ✅ done
+// + 13 more routes — all production-ready, all secure
+```
+
+**You bring your models. AuthStack brings everything else.**
+
 ---
 
-## Quick Start
+## ✨ Features
 
-### 1. Setup your models
+<table>
+<tr>
+<td>
 
-AuthStack works with your existing Mongoose models. See [User Model Schema](#user-model-schema) for required fields.
+**Core Auth**
 
-### 2. Initialize AuthStack
+- ✅ Signup with full validation
+- ✅ Signin with brute-force protection
+- ✅ Signout
+- ✅ Refresh token rotation
+- ✅ Session tracking
+
+</td>
+<td>
+
+**Email & OTP**
+
+- ✅ Send OTP via email
+- ✅ Verify email OTP
+- ✅ Forgot password flow
+- ✅ OTP-based password reset
+- ✅ Redis-backed OTP storage
+
+</td>
+</tr>
+<tr>
+<td>
+
+**Advanced Auth**
+
+- ✅ TOTP 2FA (Google Authenticator)
+- ✅ QR code generation
+- ✅ 2FA login flow
+
+</td>
+<td>
+
+**Passkeys (WebAuthn)**
+
+- ✅ Passkey registration
+- ✅ Passkey login
+- ✅ FIDO2 / WebAuthn Level 2
+
+</td>
+</tr>
+<tr>
+<td colspan="2">
+
+**Security**
+
+- ✅ Timing-safe login (prevents user enumeration)
+- ✅ HTTP-only + Secure + SameSite cookies
+- ✅ Device fingerprinting on every session
+- ✅ Zero hardcoded config — works with any project
+
+</td>
+</tr>
+</table>
+
+---
+
+## 📦 Installation
+
+```bash
+npm install authstack
+```
+
+**Peer dependencies:**
+
+```bash
+npm install express mongoose ioredis
+```
+
+**Optional (for 2FA and Passkeys):**
+
+```bash
+npm install speakeasy qrcode @simplewebauthn/server
+```
+
+---
+
+## 🚀 Quick Start
+
+### Step 1 — Create your models
+
+AuthStack works with **your existing Mongoose models**. See [User Model Schema](#-user-model-schema) for the required fields and methods.
+
+### Step 2 — Initialize
 
 ```js
 // auth.config.js
 import { AuthStack } from "authstack";
 import User from "./models/User.js";
 import Session from "./models/Session.js";
-import redisClient from "./config/redis.js";
+import redis from "./config/redis.js";
 import { sendMail } from "./utils/sendMail.js";
 
 const auth = new AuthStack({
   userModel: User,
   sessionModel: Session,
-  redis: redisClient,
+  redis: redis,
   jwtSecret: process.env.JWT_SECRET,
   allowedRoles: ["user", "admin"],
   sendMail: sendMail,
+
+  // Only needed for Passkeys
   rpName: "MyApp",
   rpID: "myapp.com",
   origin: "https://myapp.com",
@@ -127,7 +200,7 @@ const auth = new AuthStack({
 export default auth;
 ```
 
-### 3. Mount routes
+### Step 3 — Mount routes
 
 ```js
 // routes/auth.routes.js
@@ -136,27 +209,27 @@ import auth from "../auth.config.js";
 
 const router = express.Router();
 
-// Core auth
+// ── Core ──────────────────────────────────────────
 router.post("/signup", auth.signup());
 router.post("/signin", auth.signin());
 router.post("/signout", auth.signout());
 router.post("/refresh-token", auth.refreshTokenRotation());
 
-// Email verification
+// ── Email Verification ────────────────────────────
 router.post("/send-otp", auth.sendOtpEmail());
 router.post("/verify-email", auth.verifyEmailOtp());
 
-// Password reset
-router.post("/forget-password", auth.forgetPassword());
+// ── Password Reset ────────────────────────────────
+router.post("/forget-password", auth.forgotPassword());
 router.post("/verify-otp", auth.verifyOtp());
 router.post("/reset-password", auth.resetPassword());
 
-// 2FA (TOTP)
+// ── 2FA ───────────────────────────────────────────
 router.post("/2fa/generate", auth.generate2FASecret());
 router.post("/2fa/enable", auth.verifyAndEnable2FA());
 router.post("/2fa/login", auth.verify2FALogin());
 
-// Passkeys (WebAuthn)
+// ── Passkeys ──────────────────────────────────────
 router.post("/passkey/register/start", auth.startPasskeyRegistration());
 router.post("/passkey/register/verify", auth.verifyPasskeyRegistration());
 router.post("/passkey/login/start", auth.startPasskeyLogin());
@@ -173,52 +246,45 @@ import authRoutes from "./routes/auth.routes.js";
 const app = express();
 app.use(express.json());
 app.use("/auth", authRoutes);
-
-app.listen(3000, () => console.log("Server running on port 3000"));
+app.listen(3000);
 ```
+
+**That's it. 16 auth routes. Zero boilerplate.**
 
 ---
 
-## Configuration Reference
+## ⚙️ Configuration Reference
 
-Pass these options to `new AuthStack(config)`:
+| Option         | Type             | Required | Default    | Description                                |
+| -------------- | ---------------- | -------- | ---------- | ------------------------------------------ |
+| `userModel`    | Mongoose Model   | ✅       | —          | Your User model                            |
+| `sessionModel` | Mongoose Model   | ✅       | —          | Your Session model                         |
+| `redis`        | Redis Client     | ✅       | —          | ioredis or node-redis client               |
+| `jwtSecret`    | `string`         | ✅       | —          | JWT signing secret                         |
+| `allowedRoles` | `string[]`       | ❌       | `['user']` | Valid roles on signup                      |
+| `sendMail`     | `async Function` | ✅       | —          | `({ to, subject, text, html }) => Promise` |
+| `rpName`       | `string`         | Passkeys | —          | Your app name                              |
+| `rpID`         | `string`         | Passkeys | —          | Your domain e.g. `myapp.com`               |
+| `origin`       | `string`         | Passkeys | —          | Full origin e.g. `https://myapp.com`       |
 
-| Option         | Type             | Required      | Default    | Description                                            |
-| -------------- | ---------------- | ------------- | ---------- | ------------------------------------------------------ |
-| `userModel`    | Mongoose Model   | ✅            | —          | Your User model                                        |
-| `sessionModel` | Mongoose Model   | ✅            | —          | Your Session model                                     |
-| `redis`        | Redis Client     | ✅            | —          | Connected ioredis or node-redis client                 |
-| `jwtSecret`    | `string`         | ✅            | —          | Secret key for signing JWT tokens                      |
-| `allowedRoles` | `string[]`       | ❌            | `['user']` | Valid roles for signup                                 |
-| `sendMail`     | `async Function` | ✅            | —          | Mail function — receives `{ to, subject, text, html }` |
-| `rpName`       | `string`         | Passkeys only | —          | Relying Party name — your app name                     |
-| `rpID`         | `string`         | Passkeys only | —          | Your domain e.g. `myapp.com`                           |
-| `origin`       | `string`         | Passkeys only | —          | Your full origin e.g. `https://myapp.com`              |
+### sendMail signature
 
-### sendMail function signature
-
-AuthStack calls your mail function like this:
+AuthStack calls your mail function with this shape:
 
 ```js
-await config.sendMail({
+await sendMail({
   to: "user@example.com",
-  subject: "Your OTP Code",
-  text: "Your OTP is 482910",
+  subject: "Your OTP is 482910",
+  text: "Your OTP is 482910. Expires in 10 minutes.",
   html: "<p>Your OTP is <strong>482910</strong></p>",
 });
 ```
 
-You can use any mail provider:
+Works with any provider:
 
 ```js
-// Nodemailer example
-import nodemailer from "nodemailer";
-
-const transporter = nodemailer.createTransport({
-  /* your SMTP config */
-});
-
-export async function sendMail({ to, subject, text, html }) {
+// Nodemailer
+export const sendMail = async ({ to, subject, text, html }) => {
   await transporter.sendMail({
     from: "no-reply@myapp.com",
     to,
@@ -226,520 +292,218 @@ export async function sendMail({ to, subject, text, html }) {
     text,
     html,
   });
-}
+};
+
+// Resend
+export const sendMail = async ({ to, subject, html }) => {
+  await resend.emails.send({ from: "no-reply@myapp.com", to, subject, html });
+};
 ```
 
 ---
 
-## API Reference
+## 📖 API Reference
 
-### Signup
+### `POST /auth/signup`
 
-Registers a new user with full validation.
-
-```
-POST /auth/signup
-```
-
-**Request Body:**
+Registers a new user.
 
 ```json
+// Request
 {
-  "name": "John Doe",
+  "name":     "John Doe",
   "username": "johndoe",
-  "email": "john@example.com",
+  "email":    "john@example.com",
   "password": "Secret@123",
-  "role": "user"
+  "role":     "user"
 }
-```
 
-**Validations applied:**
-
-- `name` — 2 to 50 characters
-- `username` — 5 to 20 characters, must be unique
-- `email` — must be unique
-- `password` — minimum 8 characters, must contain uppercase, lowercase, number, and special character (`@$!%*?&#`)
-- `role` — must be one of `allowedRoles` from your config
-
-**Success Response `201`:**
-
-```json
+// Response 201
 {
   "success": true,
   "message": "Signup successful",
-  "data": {
-    "_id": "64abc123...",
-    "name": "John Doe",
-    "username": "johndoe",
-    "email": "john@example.com",
-    "role": "user"
-  }
+  "data": { "_id": "...", "name": "John Doe", "email": "john@example.com" }
 }
 ```
 
-**Error Responses:**
-
-| Status | Message                                                                  |
-| ------ | ------------------------------------------------------------------------ |
-| `400`  | All fields are required                                                  |
-| `400`  | Name must be between 2-50 characters                                     |
-| `400`  | Username must be between 5-20 characters                                 |
-| `400`  | Password must contain uppercase, lowercase, number and special character |
-| `400`  | Invalid role                                                             |
-| `409`  | Email already exists                                                     |
-| `409`  | Username already exists                                                  |
+| Rule     | Constraint                                              |
+| -------- | ------------------------------------------------------- |
+| name     | 2–50 characters                                         |
+| username | 5–20 characters, unique                                 |
+| password | 8+ chars, uppercase + lowercase + number + special char |
+| role     | Must be in `allowedRoles`                               |
 
 ---
 
-### Signin
+### `POST /auth/signin`
 
-Authenticates a user. Sets HTTP-only cookies. Tracks session with device fingerprint and IP.
-
-```
-POST /auth/signin
-```
-
-**Request Body:**
+Authenticates user. Sets HTTP-only cookies. Tracks session.
 
 ```json
-{
-  "email": "john@example.com",
-  "password": "Secret@123"
-}
-```
+// Request
+{ "email": "john@example.com", "password": "Secret@123" }
 
-**Signin flow (in order):**
-
-1. Find user by email
-2. If user not found — timing-safe dummy compare (prevents user enumeration)
-3. Check account is active and not deleted
-4. Check account is not locked
-5. Compare password — if wrong, increment login attempts, lock after threshold
-6. If correct — reset login attempts
-7. Check email is verified
-8. If 2FA enabled — return `twoFactorRequired: true` early
-9. Generate access + refresh tokens
-10. Create session in DB with device fingerprint, IP, user agent
-11. Set HTTP-only cookies
-12. Return user + tokens
-
-**Success Response `200`:**
-
-```json
+// Response 200
 {
   "success": true,
-  "message": "Sign in successful",
   "data": {
-    "user": { "_id": "...", "name": "John Doe", "email": "john@example.com" },
-    "accessToken": "eyJhbGci...",
+    "user": { ... },
+    "accessToken":  "eyJhbGci...",
     "refreshToken": "eyJhbGci..."
   }
 }
-```
 
-**2FA Required Response `200`:**
-
-```json
+// Response 200 — if 2FA is enabled
 {
   "success": true,
-  "message": "Enter 2FA Code",
-  "data": {
-    "twoFactorRequired": true,
-    "userId": "64abc123..."
-  }
+  "data": { "twoFactorRequired": true, "userId": "64abc..." }
 }
 ```
 
-**Error Responses:**
+**What happens internally:**
 
-| Status | Message                                       |
-| ------ | --------------------------------------------- |
-| `400`  | Email and password are required               |
-| `400`  | Please verify your email first                |
-| `401`  | Invalid credentials                           |
-| `403`  | Account has been deactivated. Contact support |
-| `403`  | Account locked. Try again after N minutes     |
+1. Timing-safe user lookup
+2. Account status checks (active, deleted, locked)
+3. Password compare → increment/reset login attempts
+4. Email verification check
+5. 2FA check → early return if enabled
+6. Token generation + session creation + cookie set
 
 ---
 
-### Signout
+### `POST /auth/signout`
 
-Clears access and refresh token cookies. Removes session from DB.
-
-```
-POST /auth/signout
-```
-
-> Reads `refreshToken` from cookie automatically.
-
-**Success Response `200`:**
+Clears cookies. Removes session from DB.
 
 ```json
-{
-  "success": true,
-  "message": "Signed out successfully"
-}
+// Response 200
+{ "success": true, "message": "Signed out successfully" }
 ```
 
 ---
 
-### Refresh Token Rotation
+### `POST /auth/refresh-token`
 
-Issues a new access token + refresh token. Old refresh token is **immediately invalidated** on use — prevents replay attacks.
-
-```
-POST /auth/refresh-token
-```
-
-> Reads from cookie `refreshToken` — or pass in request body as fallback.
-
-**Body (optional):**
+Rotates tokens. Old refresh token immediately invalidated.
 
 ```json
+// Body (optional — reads from cookie automatically)
 { "refreshToken": "eyJhbGci..." }
-```
 
-**Success Response `200`:**
-
-```json
+// Response 200
 {
   "success": true,
-  "data": {
-    "accessToken": "eyJhbGci...",
-    "refreshToken": "eyJhbGci..."
-  }
+  "data": { "accessToken": "...", "refreshToken": "..." }
 }
 ```
 
-**Error Responses:**
-
-| Status | Message                          |
-| ------ | -------------------------------- |
-| `401`  | Refresh token is required        |
-| `401`  | Invalid or expired refresh token |
-
 ---
 
-### Send OTP Email
+### `POST /auth/send-otp`
 
-Sends a 6-digit OTP to the user's email for verification. OTP is stored in Redis with expiry.
-
-```
-POST /auth/send-otp
-```
-
-**Request Body:**
+Sends a 6-digit OTP to the user's email. Stored in Redis with 10 minute expiry.
 
 ```json
 { "email": "john@example.com" }
 ```
 
-**Success Response `200`:**
+---
+
+### `POST /auth/verify-email`
+
+Verifies OTP and marks email as verified.
 
 ```json
-{ "success": true, "message": "OTP sent successfully" }
+{ "email": "john@example.com", "otp": "482910" }
 ```
 
 ---
 
-### Verify Email OTP
+### `POST /auth/forget-password`
 
-Verifies the OTP and marks the user's email as `isVerified: true`.
-
-```
-POST /auth/verify-email
-```
-
-**Request Body:**
-
-```json
-{
-  "email": "john@example.com",
-  "otp": "482910"
-}
-```
-
-**Success Response `200`:**
-
-```json
-{ "success": true, "message": "Email verified successfully" }
-```
-
-**Error Responses:**
-
-| Status | Message                |
-| ------ | ---------------------- |
-| `400`  | Invalid or expired OTP |
-| `404`  | User not found         |
-
----
-
-### Forget Password
-
-Sends a password reset OTP to the user's registered email.
-
-```
-POST /auth/forget-password
-```
-
-**Request Body:**
+Sends password reset OTP. Always returns same response (prevents email enumeration).
 
 ```json
 { "email": "john@example.com" }
 ```
 
-**Success Response `200`:**
+---
+
+### `POST /auth/verify-otp`
+
+Verifies the forget-password OTP.
 
 ```json
-{ "success": true, "message": "Password reset OTP sent to your email" }
+{ "email": "john@example.com", "otp": "192837" }
 ```
 
 ---
 
-### Verify OTP (Password Reset)
+### `POST /auth/reset-password`
 
-Verifies the OTP sent via forget password before allowing the reset.
-
-```
-POST /auth/verify-otp
-```
-
-**Request Body:**
+Resets password after OTP verification.
 
 ```json
-{
-  "email": "john@example.com",
-  "otp": "192837"
-}
-```
-
-**Success Response `200`:**
-
-```json
-{ "success": true, "message": "OTP verified. You can now reset your password" }
+{ "email": "john@example.com", "newPassword": "NewSecret@456" }
 ```
 
 ---
 
-### Reset Password
+### `POST /auth/2fa/generate`
 
-Sets a new password. Only works after OTP has been verified.
-
-```
-POST /auth/reset-password
-```
-
-**Request Body:**
+Generates TOTP secret + QR code. Requires authenticated user (`req.user`).
 
 ```json
-{
-  "email": "john@example.com",
-  "newPassword": "NewSecret@456"
-}
-```
-
-**Success Response `200`:**
-
-```json
-{ "success": true, "message": "Password reset successful" }
-```
-
----
-
-### Generate 2FA Secret
-
-Generates a TOTP secret and returns a QR code image (base64) for the authenticated user.
-
-```
-POST /auth/2fa/generate
-```
-
-> Requires authenticated user — `req.user` must be set by your `isAuth` middleware before this route.
-
-**Success Response `200`:**
-
-```json
+// Response 200
 {
   "success": true,
   "data": {
-    "qrCode": "data:image/png;base64,iVBORw...",
+    "qrCode": "data:image/png;base64,...",
     "secret": "JBSWY3DPEHPK3PXP"
   }
 }
 ```
 
-> Show the `qrCode` as an `<img>` tag — user scans it with Google Authenticator or Authy. 2FA is not enabled yet until `verify-and-enable` is called.
+> Render `qrCode` as `<img src={qrCode} />` — user scans with Google Authenticator.
 
 ---
 
-### Verify & Enable 2FA
+### `POST /auth/2fa/enable`
 
-Verifies the TOTP code from the authenticator app and permanently enables 2FA on the account.
-
-```
-POST /auth/2fa/enable
-```
-
-> Requires authenticated user.
-
-**Request Body:**
+Verifies TOTP code and enables 2FA permanently.
 
 ```json
 { "token": "482910" }
 ```
 
-**Success Response `200`:**
-
-```json
-{ "success": true, "message": "2FA enabled successfully" }
-```
-
-**Error Responses:**
-
-| Status | Message          |
-| ------ | ---------------- |
-| `400`  | Invalid 2FA code |
-
 ---
 
-### Verify 2FA Login
+### `POST /auth/2fa/login`
 
-Called after signin returns `twoFactorRequired: true`. Completes the login using the TOTP code.
-
-```
-POST /auth/2fa/login
-```
-
-**Request Body:**
+Completes login after `twoFactorRequired: true` from signin.
 
 ```json
-{
-  "userId": "64abc123...",
-  "token": "192837"
-}
-```
-
-**Success Response `200`:**
-
-```json
-{
-  "success": true,
-  "data": {
-    "accessToken": "eyJhbGci...",
-    "refreshToken": "eyJhbGci..."
-  }
-}
+{ "userId": "64abc...", "token": "192837" }
 ```
 
 ---
 
-### Start Passkey Registration
-
-Initiates the WebAuthn passkey registration ceremony. Returns options to pass to the browser's `navigator.credentials.create()`.
+### Passkey Routes
 
 ```
-POST /auth/passkey/register/start
+POST /auth/passkey/register/start   → returns WebAuthn registration options
+POST /auth/passkey/register/verify  → body: { credential }
+POST /auth/passkey/login/start      → body: { email }
+POST /auth/passkey/login/verify     → body: { email, credential }
 ```
 
-> Requires authenticated user.
-
-**Success Response `200`:**
-
-```json
-{
-  "success": true,
-  "data": { "options": { ... } }
-}
-```
-
-> Pass `options` directly to `startRegistration()` from `@simplewebauthn/browser` on the frontend.
+> Use `@simplewebauthn/browser` on the frontend to handle `credential` generation.
 
 ---
 
-### Verify Passkey Registration
+## 🗃️ User Model Schema
 
-Verifies and stores the passkey credential returned by the browser after registration.
-
-```
-POST /auth/passkey/register/verify
-```
-
-**Request Body:**
-
-```json
-{ "credential": { ... } }
-```
-
-> `credential` is the full response object from `startRegistration()` on the frontend.
-
-**Success Response `200`:**
-
-```json
-{ "success": true, "message": "Passkey registered successfully" }
-```
-
----
-
-### Start Passkey Login
-
-Initiates the WebAuthn authentication ceremony.
-
-```
-POST /auth/passkey/login/start
-```
-
-**Request Body:**
-
-```json
-{ "email": "john@example.com" }
-```
-
-**Success Response `200`:**
-
-```json
-{
-  "success": true,
-  "data": { "options": { ... } }
-}
-```
-
----
-
-### Verify Passkey Login
-
-Verifies the passkey authentication response and issues access + refresh tokens.
-
-```
-POST /auth/passkey/login/verify
-```
-
-**Request Body:**
-
-```json
-{
-  "email":      "john@example.com",
-  "credential": { ... }
-}
-```
-
-**Success Response `200`:**
-
-```json
-{
-  "success": true,
-  "data": {
-    "user":          { ... },
-    "accessToken":   "eyJhbGci...",
-    "refreshToken":  "eyJhbGci..."
-  }
-}
-```
-
----
-
-## User Model Schema
-
-Your Mongoose User model must include these fields and methods for full AuthStack compatibility:
+Copy-paste this as your base. Extend as needed.
 
 ```js
 import mongoose from "mongoose";
@@ -754,22 +518,16 @@ const userSchema = new mongoose.Schema(
     password: { type: String, required: true, select: false },
     role: { type: String, default: "user" },
 
-    // Email verification
     isVerified: { type: Boolean, default: false },
-
-    // Account status
     isActive: { type: Boolean, default: true },
     isDeleted: { type: Boolean, default: false },
 
-    // Brute force protection
     loginAttempts: { type: Number, default: 0 },
     lockUntil: { type: Date },
 
-    // 2FA
     twoFactorEnabled: { type: Boolean, default: false },
     twoFactorSecret: { type: String, select: false },
 
-    // Passkeys (WebAuthn)
     passkeys: [
       {
         credentialID: String,
@@ -780,46 +538,39 @@ const userSchema = new mongoose.Schema(
       },
     ],
     currentChallenge: { type: String, select: false },
-
-    // Tokens & activity
     refreshToken: { type: String, select: false },
     lastLogin: { type: Date },
   },
   { timestamps: true },
 );
 
-// Hash password before save
+// Hash password
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
   this.password = await bcrypt.hash(this.password, 12);
   next();
 });
 
-// Required methods — AuthStack calls these internally
+// Required methods — AuthStack calls these
 userSchema.methods.isPasswordMatched = async function (password) {
   return bcrypt.compare(password, this.password);
 };
-
 userSchema.methods.generateAccessToken = function () {
   return jwt.sign({ _id: this._id }, process.env.JWT_SECRET, {
     expiresIn: "15m",
   });
 };
-
 userSchema.methods.generateRefreshToken = function () {
   return jwt.sign({ _id: this._id }, process.env.JWT_SECRET, {
     expiresIn: "7d",
   });
 };
-
 userSchema.methods.incrementLoginAttempts = async function () {
   this.loginAttempts += 1;
-  if (this.loginAttempts >= 5) {
+  if (this.loginAttempts >= 5)
     this.lockUntil = new Date(Date.now() + 30 * 60 * 1000);
-  }
   await this.save({ validateBeforeSave: false });
 };
-
 userSchema.methods.resetLoginAttempts = async function () {
   this.loginAttempts = 0;
   this.lockUntil = undefined;
@@ -831,9 +582,7 @@ export default mongoose.model("User", userSchema);
 
 ---
 
-## Session Model Schema
-
-Stores one record per login. Used for session tracking, device management, and refresh token invalidation.
+## 🗃️ Session Model Schema
 
 ```js
 import mongoose from "mongoose";
@@ -856,90 +605,95 @@ export default mongoose.model("Session", sessionSchema);
 
 ---
 
-## Error Handling
+## 🛡️ Security
 
-All AuthStack handlers throw errors with a `statusCode` and `message`. Add a global error handler in Express to catch them:
-
-```js
-// app.js — add this after all routes
-app.use((err, req, res, next) => {
-  const status = err.statusCode || 500;
-  const message = err.message || "Internal Server Error";
-
-  res.status(status).json({
-    success: false,
-    message: message,
-  });
-});
-```
-
----
-
-## Security
-
-AuthStack is built security-first. Here is what is handled for you:
-
-| Protection                | Implementation                                          |
-| ------------------------- | ------------------------------------------------------- |
-| Password hashing          | bcryptjs — salt rounds 12                               |
-| Timing-safe login         | Dummy hash compare prevents user enumeration            |
-| Brute force protection    | Login attempt counter + automatic account lockout       |
-| Short-lived access tokens | Default 15 minutes expiry                               |
-| Refresh token rotation    | Old token invalidated immediately on every use          |
-| HTTP-only cookies         | Tokens never accessible from JavaScript                 |
-| Secure + SameSite cookies | Configured automatically based on NODE_ENV              |
-| 2FA (TOTP)                | speakeasy — compatible with Google Authenticator, Authy |
-| Passkeys                  | @simplewebauthn/server — FIDO2 / WebAuthn Level 2       |
-| Session tracking          | Device fingerprint + IP + user agent per session        |
-| XSS protection            | HTTP-only cookies — no token in localStorage            |
+| Protection        | How                                                  |
+| ----------------- | ---------------------------------------------------- |
+| Password hashing  | bcryptjs — 12 salt rounds                            |
+| Timing-safe login | Dummy hash compare on user-not-found                 |
+| Brute force       | Login attempt counter + 30 min auto lockout          |
+| Token expiry      | Access token 15m · Refresh token 7d                  |
+| Token rotation    | Old refresh token invalidated on every use           |
+| Cookie security   | `httpOnly` + `secure` + `sameSite` per environment   |
+| XSS               | HTTP-only cookies — tokens never in `localStorage`   |
+| 2FA               | TOTP via speakeasy — Google Authenticator compatible |
+| Passkeys          | FIDO2 / WebAuthn Level 2 via @simplewebauthn/server  |
+| Session tracking  | Device fingerprint + IP + user agent per login       |
+| Email enumeration | Forgot password always returns same response         |
 
 ---
 
-## FAQ
+## ❓ FAQ
 
-**Can I use my own User model schema?**
+<details>
+<summary><strong>Can I use my own User model?</strong></summary>
 
-Yes. AuthStack only requires certain fields and methods on your model — it does not force any schema structure on you. See [User Model Schema](#user-model-schema).
+Yes. AuthStack requires certain fields and methods on your model but does not force any schema structure. See [User Model Schema](#-user-model-schema) for the full list.
 
-**Can I use it without Redis?**
+</details>
 
-Redis is required for OTP storage. If you do not need OTP or forget-password features, you can pass a mock Redis client — other features will still work fine.
+<details>
+<summary><strong>Can I use it without Redis?</strong></summary>
 
-**Does it work with TypeScript?**
+Redis is required for OTP storage only. If you don't need OTP or forgot password features, pass a mock Redis client — all other features will work fine.
 
-TypeScript types are coming in the next release. For now use JSDoc annotations.
+</details>
 
-**Can I use it without Passkeys?**
+<details>
+<summary><strong>Can I use it without Passkeys?</strong></summary>
 
-Yes. Passkey routes are completely optional. Just do not mount them. The `rpName`, `rpID`, and `origin` config fields are only needed if you use passkey routes.
+Yes. Passkey routes are optional — just don't mount them. The `rpName`, `rpID`, and `origin` config fields are only needed if you use passkey routes.
 
-**Can I customize validation rules?**
+</details>
 
-Custom validation hooks are on the roadmap. For now the built-in rules follow industry best practices.
+<details>
+<summary><strong>Does it work with TypeScript?</strong></summary>
 
-**What Node.js version is required?**
+TypeScript types are coming in the next release. For now use JSDoc annotations or cast manually.
 
-Node.js 18 or higher. The library uses top-level await and native ES modules.
+</details>
+
+<details>
+<summary><strong>What Node.js version is required?</strong></summary>
+
+Node.js 18 or higher. AuthStack uses ES modules and top-level await.
+
+</details>
+
+<details>
+<summary><strong>Can I customize validation rules?</strong></summary>
+
+Custom validation hooks are on the roadmap. Current rules follow industry best practices and cover 99% of use cases.
+
+</details>
 
 ---
 
-## Contributing
+## 🤝 Contributing
 
-PRs are welcome. If you find a bug or want to request a feature, please open an issue on GitHub first so we can discuss it.
+PRs are welcome!
 
 1. Fork the repo
 2. Create your branch: `git checkout -b feature/my-feature`
-3. Commit your changes: `git commit -m 'feat: add my feature'`
+3. Commit: `git commit -m 'feat: add my feature'`
 4. Push and open a PR
+
+Please open an issue first for major changes.
 
 ---
 
-## License
+## 📄 License
 
-MIT © AuthStack
+MIT © [Akash Patel](https://github.com/AKASHPATEL123500)
 
 ---
 
 <div align="center">
-  <p>Made with care for developers who want auth done right — the first time.</p>
+
+**[npm](https://www.npmjs.com/package/authstack) · [GitHub](https://github.com/AKASHPATEL123500/AuthStack) · [Issues](https://github.com/AKASHPATEL123500/AuthStack/issues)**
+
+<br/>
+
+<sub>Made with ❤️ — auth done right, the first time.</sub>
+
 </div>
