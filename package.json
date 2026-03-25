@@ -21,6 +21,10 @@
     "type": "git",
     "url": "https://github.com/AKASHPATEL123500/AuthStack"
   },
+  "homepage": "https://github.com/AKASHPATEL123500/AuthStack#readme",
+  "bugs": {
+    "url": "https://github.com/AKASHPATEL123500/AuthStack/issues"
+  },
   "peerDependencies": {
     "express": ">=4.0.0",
     "mongoose": ">=7.0.0"
