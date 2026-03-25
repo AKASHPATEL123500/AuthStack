@@ -1,0 +1,35 @@
+{
+  "name": "authstack",
+  "version": "1.0.1",
+  "description": "Production-ready authentication library for Node.js and Express",
+  "type": "module",
+  "main": "index.js",
+  "exports": "./index.js",
+  "keywords": [
+    "auth",
+    "authentication",
+    "jwt",
+    "passkey",
+    "2fa",
+    "otp",
+    "express",
+    "nodejs"
+  ],
+  "author": "Akash Reddy Patel",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AKASHPATEL123500/AuthStack"
+  },
+  "peerDependencies": {
+    "express": ">=4.0.0",
+    "mongoose": ">=7.0.0"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.0",
+    "speakeasy": "^2.0.0",
+    "qrcode": "^1.5.0",
+    "@simplewebauthn/server": "^9.0.0"
+  }
+}
