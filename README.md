@@ -1,42 +1,45 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/AKASHPATEL123500/AuthStack/main/assets/logo.png" alt="AuthStack" width="120" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f0c29,50:302b63,100:24243e&height=200&section=header&text=AuthStack&fontSize=80&fontColor=ffffff&fontAlignY=38&desc=The%20last%20auth%20library%20you%27ll%20ever%20need&descSize=18&descAlignY=58&descColor=a78bfa" width="100%" />
 
-<h1>🔐 AuthStack</h1>
+<br/>
 
-<p><strong>The last auth library you'll ever need.</strong></p>
+<a href="https://www.npmjs.com/package/authstack">
+  <img src="https://img.shields.io/npm/v/authstack?style=for-the-badge&logo=npm&logoColor=white&color=CC3534" />
+</a>
+<a href="https://www.npmjs.com/package/authstack">
+  <img src="https://img.shields.io/npm/dm/authstack?style=for-the-badge&logo=npm&logoColor=white&color=4B5563" />
+</a>
+<a href="https://github.com/AKASHPATEL123500/AuthStack/stargazers">
+  <img src="https://img.shields.io/github/stars/AKASHPATEL123500/AuthStack?style=for-the-badge&logo=github&logoColor=white&color=f59e0b" />
+</a>
+<a href="https://github.com/AKASHPATEL123500/AuthStack/blob/main/LICENSE">
+  <img src="https://img.shields.io/npm/l/authstack?style=for-the-badge&color=22c55e" />
+</a>
+<a href="#">
+  <img src="https://img.shields.io/badge/Node.js-%3E%3D18.0.0-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" />
+</a>
+<a href="#">
+  <img src="https://img.shields.io/badge/PRs-Welcome-a78bfa?style=for-the-badge" />
+</a>
 
-<p>
-Production-ready authentication for Node.js & Express.<br/>
-Bring your own models. We handle the rest.
-</p>
+<br/><br/>
 
-<p>
-  <a href="https://www.npmjs.com/package/authstack">
-    <img src="https://img.shields.io/npm/v/authstack.svg?style=for-the-badge&color=cb3837&logo=npm" alt="npm version" />
-  </a>
-  <a href="https://www.npmjs.com/package/authstack">
-    <img src="https://img.shields.io/npm/dm/authstack.svg?style=for-the-badge&color=blue" alt="downloads" />
-  </a>
-  <a href="https://github.com/AKASHPATEL123500/AuthStack/blob/main/LICENSE">
-    <img src="https://img.shields.io/npm/l/authstack.svg?style=for-the-badge&color=green" alt="license" />
-  </a>
-  <a href="#">
-    <img src="https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen?style=for-the-badge&logo=nodedotjs" alt="node" />
-  </a>
-  <a href="#">
-    <img src="https://img.shields.io/badge/PRs-welcome-brightgreen?style=for-the-badge" alt="PRs welcome" />
-  </a>
-</p>
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&pause=1000&color=A78BFA&center=true&vCenter=true&width=600&lines=Signup+%E2%80%94+done+in+1+line;Signin+with+brute-force+protection;OTP+%2B+2FA+%2B+Passkeys+built-in;Zero+hardcoded+config;Production-ready+from+day+one" alt="Typing SVG" />
 
-<p>
-  <a href="#-features">Features</a> •
-  <a href="#-installation">Installation</a> •
-  <a href="#-quick-start">Quick Start</a> •
-  <a href="#-api-reference">API Reference</a> •
-  <a href="#-security">Security</a> •
-  <a href="#-faq">FAQ</a>
-</p>
+<br/><br/>
+
+<a href="https://www.npmjs.com/package/authstack">
+  <img src="https://img.shields.io/badge/View%20on%20NPM-%23CC3534?style=for-the-badge&logo=npm&logoColor=white" />
+</a>
+&nbsp;
+<a href="https://github.com/AKASHPATEL123500/AuthStack">
+  <img src="https://img.shields.io/badge/View%20on%20GitHub-%23181717?style=for-the-badge&logo=github&logoColor=white" />
+</a>
+&nbsp;
+<a href="https://github.com/AKASHPATEL123500/AuthStack/issues">
+  <img src="https://img.shields.io/badge/Report%20a%20Bug-%23EF4444?style=for-the-badge&logo=bugsnag&logoColor=white" />
+</a>
 
 </div>
 
@@ -44,102 +47,101 @@ Bring your own models. We handle the rest.
 
 ---
 
-## 😩 The Problem
+<div align="center">
+<h2>😩 Building auth from scratch?</h2>
+</div>
 
-Every Node.js project needs auth. And every time, you write the same code:
-
+```diff
+- Signup validation         → hours of work
+- Password hashing          → easy to get wrong
+- JWT + refresh tokens      → tricky to implement securely
+- Refresh token rotation    → most devs skip this
+- OTP via email             → another integration
+- Forgot password flow      → more boilerplate
+- 2FA with QR codes         → complex setup
+- Passkeys (WebAuthn)       → days of work
+- Brute force protection    → often forgotten
+- Session tracking          → even more code
 ```
-❌ Signup validation
-❌ Password hashing
-❌ JWT tokens
-❌ Refresh token rotation
-❌ OTP via email
-❌ Forgot password flow
-❌ 2FA with QR codes
-❌ Passkeys (WebAuthn)
-❌ Session tracking
-❌ Brute force protection
-```
 
-It works. But it takes days. And it's easy to get wrong.
+**Every project. Every time. Same code.**
 
----
+<br/>
 
-## ✅ The Solution
+<div align="center">
+<h2>✅ With AuthStack</h2>
+</div>
 
-```bash
+```js
 npm install authstack
 ```
 
 ```js
 const auth = new AuthStack({ userModel: User, ...config });
 
-app.post("/signup", auth.signup()); // ✅ done
-app.post("/signin", auth.signin()); // ✅ done
-app.post("/signout", auth.signout()); // ✅ done
-// + 13 more routes — all production-ready, all secure
+app.post("/signup", auth.signup()); // ✅ validation, hashing, duplicate check
+app.post("/signin", auth.signin()); // ✅ brute force, lockout, 2FA check
+app.post("/signout", auth.signout()); // ✅ cookie clear, session remove
+
+// + 13 more routes. All secure. All production-ready.
 ```
 
-**You bring your models. AuthStack brings everything else.**
+**You bring your models. AuthStack brings the rest.**
 
 ---
 
-## ✨ Features
+## 📦 What's Inside
 
 <table>
 <tr>
-<td>
+<td width="50%">
 
-**Core Auth**
+### 🔑 Core Auth
 
-- ✅ Signup with full validation
-- ✅ Signin with brute-force protection
-- ✅ Signout
-- ✅ Refresh token rotation
-- ✅ Session tracking
-
-</td>
-<td>
-
-**Email & OTP**
-
-- ✅ Send OTP via email
-- ✅ Verify email OTP
-- ✅ Forgot password flow
-- ✅ OTP-based password reset
-- ✅ Redis-backed OTP storage
+| Route                 | What it does                    |
+| --------------------- | ------------------------------- |
+| `POST /signup`        | Validate + hash + create user   |
+| `POST /signin`        | Secure login + session tracking |
+| `POST /signout`       | Clear cookies + remove session  |
+| `POST /refresh-token` | Rotate tokens securely          |
 
 </td>
-</tr>
-<tr>
-<td>
+<td width="50%">
 
-**Advanced Auth**
+### 📧 Email & OTP
 
-- ✅ TOTP 2FA (Google Authenticator)
-- ✅ QR code generation
-- ✅ 2FA login flow
-
-</td>
-<td>
-
-**Passkeys (WebAuthn)**
-
-- ✅ Passkey registration
-- ✅ Passkey login
-- ✅ FIDO2 / WebAuthn Level 2
+| Route                   | What it does                 |
+| ----------------------- | ---------------------------- |
+| `POST /send-otp`        | 6-digit OTP via your mail fn |
+| `POST /verify-email`    | Verify OTP → mark verified   |
+| `POST /forget-password` | OTP for password reset       |
+| `POST /verify-otp`      | Verify reset OTP             |
+| `POST /reset-password`  | Set new password             |
 
 </td>
 </tr>
 <tr>
-<td colspan="2">
+<td width="50%">
 
-**Security**
+### 🔐 Two-Factor Auth
 
-- ✅ Timing-safe login (prevents user enumeration)
-- ✅ HTTP-only + Secure + SameSite cookies
-- ✅ Device fingerprinting on every session
-- ✅ Zero hardcoded config — works with any project
+| Route                | What it does             |
+| -------------------- | ------------------------ |
+| `POST /2fa/generate` | TOTP secret + QR code    |
+| `POST /2fa/enable`   | Verify code + enable 2FA |
+| `POST /2fa/login`    | Complete 2FA login       |
+
+</td>
+<td width="50%">
+
+### 🪪 Passkeys (WebAuthn)
+
+| Route                           | What it does                |
+| ------------------------------- | --------------------------- |
+| `POST /passkey/register/start`  | Start registration ceremony |
+| `POST /passkey/register/verify` | Verify + store credential   |
+| `POST /passkey/login/start`     | Start login ceremony        |
+| `POST /passkey/login/verify`    | Verify + issue tokens       |
 
 </td>
 </tr>
@@ -147,33 +149,15 @@ app.post("/signout", auth.signout()); // ✅ done
 
 ---
 
-## 📦 Installation
+## 🚀 Quick Start
+
+### 1 — Install
 
 ```bash
 npm install authstack
 ```
 
-**Peer dependencies:**
-
-```bash
-npm install express mongoose ioredis
-```
-
-**Optional (for 2FA and Passkeys):**
-
-```bash
-npm install speakeasy qrcode @simplewebauthn/server
-```
-
----
-
-## 🚀 Quick Start
-
-### Step 1 — Create your models
-
-AuthStack works with **your existing Mongoose models**. See [User Model Schema](#-user-model-schema) for the required fields and methods.
-
-### Step 2 — Initialize
+### 2 — Initialize
 
 ```js
 // auth.config.js
@@ -184,14 +168,14 @@ import redis from "./config/redis.js";
 import { sendMail } from "./utils/sendMail.js";
 
 const auth = new AuthStack({
-  userModel: User,
-  sessionModel: Session,
-  redis: redis,
+  userModel: User, // your Mongoose User model
+  sessionModel: Session, // your Session model
+  redis: redis, // your Redis client
   jwtSecret: process.env.JWT_SECRET,
   allowedRoles: ["user", "admin"],
-  sendMail: sendMail,
+  sendMail: sendMail, // your mail function
 
-  // Only needed for Passkeys
+  // Only needed for Passkeys ↓
   rpName: "MyApp",
   rpID: "myapp.com",
   origin: "https://myapp.com",
@@ -200,7 +184,7 @@ const auth = new AuthStack({
 export default auth;
 ```
 
-### Step 3 — Mount routes
+### 3 — Mount Routes
 
 ```js
 // routes/auth.routes.js
@@ -209,27 +193,27 @@ import auth from "../auth.config.js";
 
 const router = express.Router();
 
-// ── Core ──────────────────────────────────────────
+// ── Core ──────────────────────────────────────────────────────
 router.post("/signup", auth.signup());
 router.post("/signin", auth.signin());
 router.post("/signout", auth.signout());
 router.post("/refresh-token", auth.refreshTokenRotation());
 
-// ── Email Verification ────────────────────────────
+// ── Email Verification ────────────────────────────────────────
 router.post("/send-otp", auth.sendOtpEmail());
 router.post("/verify-email", auth.verifyEmailOtp());
 
-// ── Password Reset ────────────────────────────────
+// ── Password Reset ────────────────────────────────────────────
 router.post("/forget-password", auth.forgotPassword());
 router.post("/verify-otp", auth.verifyOtp());
 router.post("/reset-password", auth.resetPassword());
 
-// ── 2FA ───────────────────────────────────────────
+// ── Two-Factor Auth ───────────────────────────────────────────
 router.post("/2fa/generate", auth.generate2FASecret());
 router.post("/2fa/enable", auth.verifyAndEnable2FA());
 router.post("/2fa/login", auth.verify2FALogin());
 
-// ── Passkeys ──────────────────────────────────────
+// ── Passkeys (WebAuthn) ───────────────────────────────────────
 router.post("/passkey/register/start", auth.startPasskeyRegistration());
 router.post("/passkey/register/verify", auth.verifyPasskeyRegistration());
 router.post("/passkey/login/start", auth.startPasskeyLogin());
@@ -246,41 +230,28 @@ import authRoutes from "./routes/auth.routes.js";
 const app = express();
 app.use(express.json());
 app.use("/auth", authRoutes);
-app.listen(3000);
+app.listen(3000, () => console.log("🚀 Server ready"));
 ```
 
-**That's it. 16 auth routes. Zero boilerplate.**
+**Done. 16 auth routes. Zero boilerplate.**
 
 ---
 
-## ⚙️ Configuration Reference
+## ⚙️ Configuration
 
-| Option         | Type             | Required | Default    | Description                                |
-| -------------- | ---------------- | -------- | ---------- | ------------------------------------------ |
-| `userModel`    | Mongoose Model   | ✅       | —          | Your User model                            |
-| `sessionModel` | Mongoose Model   | ✅       | —          | Your Session model                         |
-| `redis`        | Redis Client     | ✅       | —          | ioredis or node-redis client               |
-| `jwtSecret`    | `string`         | ✅       | —          | JWT signing secret                         |
-| `allowedRoles` | `string[]`       | ❌       | `['user']` | Valid roles on signup                      |
-| `sendMail`     | `async Function` | ✅       | —          | `({ to, subject, text, html }) => Promise` |
-| `rpName`       | `string`         | Passkeys | —          | Your app name                              |
-| `rpID`         | `string`         | Passkeys | —          | Your domain e.g. `myapp.com`               |
-| `origin`       | `string`         | Passkeys | —          | Full origin e.g. `https://myapp.com`       |
+| Option         | Type           | Required | Default    | Description                     |
+| -------------- | -------------- | -------- | ---------- | ------------------------------- |
+| `userModel`    | Mongoose Model | ✅       | —          | Your User model                 |
+| `sessionModel` | Mongoose Model | ✅       | —          | Your Session model              |
+| `redis`        | Redis Client   | ✅       | —          | ioredis or node-redis           |
+| `jwtSecret`    | `string`       | ✅       | —          | JWT signing secret              |
+| `allowedRoles` | `string[]`     | ❌       | `['user']` | Valid roles on signup           |
+| `sendMail`     | `async fn`     | ✅       | —          | `({ to, subject, text, html })` |
+| `rpName`       | `string`       | Passkeys | —          | App name for WebAuthn           |
+| `rpID`         | `string`       | Passkeys | —          | Domain e.g. `myapp.com`         |
+| `origin`       | `string`       | Passkeys | —          | Origin e.g. `https://myapp.com` |
 
-### sendMail signature
-
-AuthStack calls your mail function with this shape:
-
-```js
-await sendMail({
-  to: "user@example.com",
-  subject: "Your OTP is 482910",
-  text: "Your OTP is 482910. Expires in 10 minutes.",
-  html: "<p>Your OTP is <strong>482910</strong></p>",
-});
-```
-
-Works with any provider:
+### sendMail — works with any provider
 
 ```js
 // Nodemailer
@@ -298,6 +269,11 @@ export const sendMail = async ({ to, subject, text, html }) => {
 export const sendMail = async ({ to, subject, html }) => {
   await resend.emails.send({ from: "no-reply@myapp.com", to, subject, html });
 };
+
+// SendGrid
+export const sendMail = async ({ to, subject, html }) => {
+  await sgMail.send({ from: "no-reply@myapp.com", to, subject, html });
+};
 ```
 
 ---
@@ -306,184 +282,85 @@ export const sendMail = async ({ to, subject, html }) => {
 
 ### `POST /auth/signup`
 
-Registers a new user.
-
-```json
+```jsonc
 // Request
 {
   "name":     "John Doe",
-  "username": "johndoe",
-  "email":    "john@example.com",
-  "password": "Secret@123",
-  "role":     "user"
+  "username": "johndoe",       // 5–20 chars, unique
+  "email":    "john@mail.com",
+  "password": "Secret@123",    // 8+ chars, upper+lower+number+special
+  "role":     "user"           // must be in allowedRoles
 }
 
-// Response 201
+// 201 — Success
 {
   "success": true,
   "message": "Signup successful",
-  "data": { "_id": "...", "name": "John Doe", "email": "john@example.com" }
+  "data": { "_id": "...", "name": "John Doe", "email": "john@mail.com" }
 }
-```
 
-| Rule     | Constraint                                              |
-| -------- | ------------------------------------------------------- |
-| name     | 2–50 characters                                         |
-| username | 5–20 characters, unique                                 |
-| password | 8+ chars, uppercase + lowercase + number + special char |
-| role     | Must be in `allowedRoles`                               |
+// Errors → 400 validation | 409 email/username exists
+```
 
 ---
 
 ### `POST /auth/signin`
 
-Authenticates user. Sets HTTP-only cookies. Tracks session.
-
-```json
+```jsonc
 // Request
-{ "email": "john@example.com", "password": "Secret@123" }
+{ "email": "john@mail.com", "password": "Secret@123" }
 
-// Response 200
+// 200 — Success
 {
   "success": true,
   "data": {
     "user": { ... },
-    "accessToken":  "eyJhbGci...",
-    "refreshToken": "eyJhbGci..."
+    "accessToken":  "eyJhbGci...",   // 15 min expiry
+    "refreshToken": "eyJhbGci..."    // 7 day expiry
   }
 }
 
-// Response 200 — if 2FA is enabled
-{
-  "success": true,
-  "data": { "twoFactorRequired": true, "userId": "64abc..." }
-}
+// 200 — if 2FA is enabled
+{ "success": true, "data": { "twoFactorRequired": true, "userId": "..." } }
+
+// Errors → 401 invalid creds | 403 locked/deactivated | 400 unverified
 ```
 
-**What happens internally:**
+**Signin flow:**
 
-1. Timing-safe user lookup
-2. Account status checks (active, deleted, locked)
-3. Password compare → increment/reset login attempts
-4. Email verification check
-5. 2FA check → early return if enabled
-6. Token generation + session creation + cookie set
-
----
-
-### `POST /auth/signout`
-
-Clears cookies. Removes session from DB.
-
-```json
-// Response 200
-{ "success": true, "message": "Signed out successfully" }
+```
+Request → timing-safe lookup → active/deleted check → lockout check
+→ password compare → attempt tracking → 2FA check
+→ token generation → session create → cookie set → response
 ```
 
 ---
 
 ### `POST /auth/refresh-token`
 
-Rotates tokens. Old refresh token immediately invalidated.
-
-```json
-// Body (optional — reads from cookie automatically)
+```jsonc
+// Reads from cookie automatically — or pass in body
 { "refreshToken": "eyJhbGci..." }
 
-// Response 200
-{
-  "success": true,
-  "data": { "accessToken": "...", "refreshToken": "..." }
-}
-```
-
----
-
-### `POST /auth/send-otp`
-
-Sends a 6-digit OTP to the user's email. Stored in Redis with 10 minute expiry.
-
-```json
-{ "email": "john@example.com" }
-```
-
----
-
-### `POST /auth/verify-email`
-
-Verifies OTP and marks email as verified.
-
-```json
-{ "email": "john@example.com", "otp": "482910" }
-```
-
----
-
-### `POST /auth/forget-password`
-
-Sends password reset OTP. Always returns same response (prevents email enumeration).
-
-```json
-{ "email": "john@example.com" }
-```
-
----
-
-### `POST /auth/verify-otp`
-
-Verifies the forget-password OTP.
-
-```json
-{ "email": "john@example.com", "otp": "192837" }
-```
-
----
-
-### `POST /auth/reset-password`
-
-Resets password after OTP verification.
-
-```json
-{ "email": "john@example.com", "newPassword": "NewSecret@456" }
+// 200 — new tokens issued, old token immediately invalidated
+{ "success": true, "data": { "accessToken": "...", "refreshToken": "..." } }
 ```
 
 ---
 
 ### `POST /auth/2fa/generate`
 
-Generates TOTP secret + QR code. Requires authenticated user (`req.user`).
+> Requires authenticated user — set `req.user` via your `isAuth` middleware.
 
-```json
-// Response 200
+```jsonc
+// 200
 {
   "success": true,
   "data": {
-    "qrCode": "data:image/png;base64,...",
-    "secret": "JBSWY3DPEHPK3PXP"
-  }
+    "qrCode": "data:image/png;base64,...", // render as <img>
+    "secret": "JBSWY3DPEHPK3PXP",
+  },
 }
-```
-
-> Render `qrCode` as `<img src={qrCode} />` — user scans with Google Authenticator.
-
----
-
-### `POST /auth/2fa/enable`
-
-Verifies TOTP code and enables 2FA permanently.
-
-```json
-{ "token": "482910" }
-```
-
----
-
-### `POST /auth/2fa/login`
-
-Completes login after `twoFactorRequired: true` from signin.
-
-```json
-{ "userId": "64abc...", "token": "192837" }
 ```
 
 ---
@@ -491,19 +368,17 @@ Completes login after `twoFactorRequired: true` from signin.
 ### Passkey Routes
 
 ```
-POST /auth/passkey/register/start   → returns WebAuthn registration options
-POST /auth/passkey/register/verify  → body: { credential }
-POST /auth/passkey/login/start      → body: { email }
-POST /auth/passkey/login/verify     → body: { email, credential }
+POST /passkey/register/start   → WebAuthn registration options
+POST /passkey/register/verify  → { credential } from @simplewebauthn/browser
+POST /passkey/login/start      → { email }
+POST /passkey/login/verify     → { email, credential }
 ```
-
-> Use `@simplewebauthn/browser` on the frontend to handle `credential` generation.
 
 ---
 
-## 🗃️ User Model Schema
+## 🗃️ Required Schemas
 
-Copy-paste this as your base. Extend as needed.
+### User Model
 
 ```js
 import mongoose from "mongoose";
@@ -544,16 +419,15 @@ const userSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
-// Hash password
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
   this.password = await bcrypt.hash(this.password, 12);
   next();
 });
 
-// Required methods — AuthStack calls these
-userSchema.methods.isPasswordMatched = async function (password) {
-  return bcrypt.compare(password, this.password);
+// ⚠️ These methods are required by AuthStack
+userSchema.methods.isPasswordMatched = async function (pwd) {
+  return bcrypt.compare(pwd, this.password);
 };
 userSchema.methods.generateAccessToken = function () {
   return jwt.sign({ _id: this._id }, process.env.JWT_SECRET, {
@@ -580,91 +454,80 @@ userSchema.methods.resetLoginAttempts = async function () {
 export default mongoose.model("User", userSchema);
 ```
 
----
-
-## 🗃️ Session Model Schema
+### Session Model
 
 ```js
 import mongoose from "mongoose";
 
-const sessionSchema = new mongoose.Schema(
-  {
-    user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
-    email: { type: String, required: true },
-    refreshToken: { type: String, required: true },
-    deviceFingerprint: { type: String },
-    IP: { type: String },
-    userAgent: { type: String },
-    lastUsed: { type: Date, default: Date.now },
-  },
-  { timestamps: true },
+export default mongoose.model(
+  "Session",
+  new mongoose.Schema(
+    {
+      user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        required: true,
+      },
+      email: String,
+      refreshToken: String,
+      deviceFingerprint: String,
+      IP: String,
+      userAgent: String,
+      lastUsed: { type: Date, default: Date.now },
+    },
+    { timestamps: true },
+  ),
 );
-
-export default mongoose.model("Session", sessionSchema);
 ```
 
 ---
 
 ## 🛡️ Security
 
-| Protection        | How                                                  |
+| Layer             | Protection                                           |
 | ----------------- | ---------------------------------------------------- |
-| Password hashing  | bcryptjs — 12 salt rounds                            |
-| Timing-safe login | Dummy hash compare on user-not-found                 |
-| Brute force       | Login attempt counter + 30 min auto lockout          |
-| Token expiry      | Access token 15m · Refresh token 7d                  |
-| Token rotation    | Old refresh token invalidated on every use           |
-| Cookie security   | `httpOnly` + `secure` + `sameSite` per environment   |
-| XSS               | HTTP-only cookies — tokens never in `localStorage`   |
-| 2FA               | TOTP via speakeasy — Google Authenticator compatible |
-| Passkeys          | FIDO2 / WebAuthn Level 2 via @simplewebauthn/server  |
-| Session tracking  | Device fingerprint + IP + user agent per login       |
-| Email enumeration | Forgot password always returns same response         |
+| 🔒 Passwords      | bcryptjs — 12 salt rounds                            |
+| 🎭 Timing attacks | Dummy hash compare — no user enumeration             |
+| 🔨 Brute force    | Attempt counter + 30 min auto lockout after 5 fails  |
+| 🔄 Token rotation | Refresh token invalidated on every use               |
+| 🍪 Cookies        | `httpOnly` + `secure` + `sameSite` — no XSS access   |
+| 📱 2FA            | TOTP via speakeasy — Google Authenticator compatible |
+| 🪪 Passkeys       | FIDO2 / WebAuthn Level 2 — phishing resistant        |
+| 🖥️ Sessions       | Device fingerprint + IP + user agent per login       |
+| 📧 Email enum     | Forgot password returns same response always         |
 
 ---
 
 ## ❓ FAQ
 
 <details>
-<summary><strong>Can I use my own User model?</strong></summary>
-
-Yes. AuthStack requires certain fields and methods on your model but does not force any schema structure. See [User Model Schema](#-user-model-schema) for the full list.
-
+<summary><strong>Can I use my own User model schema?</strong></summary>
+<br/>
+Yes. AuthStack only requires certain fields and methods on your model — no forced schema structure. Copy the base schema above and extend it freely.
 </details>
 
 <details>
 <summary><strong>Can I use it without Redis?</strong></summary>
-
-Redis is required for OTP storage only. If you don't need OTP or forgot password features, pass a mock Redis client — all other features will work fine.
-
+<br/>
+Redis is only needed for OTP storage. If you don't need OTP or forgot password, pass a mock Redis client — all other features work fine.
 </details>
 
 <details>
-<summary><strong>Can I use it without Passkeys?</strong></summary>
-
-Yes. Passkey routes are optional — just don't mount them. The `rpName`, `rpID`, and `origin` config fields are only needed if you use passkey routes.
-
+<summary><strong>Can I skip Passkeys?</strong></summary>
+<br/>
+Yes. Passkey routes are optional. Don't mount them. Skip rpName, rpID, and origin in config.
 </details>
 
 <details>
-<summary><strong>Does it work with TypeScript?</strong></summary>
-
-TypeScript types are coming in the next release. For now use JSDoc annotations or cast manually.
-
+<summary><strong>TypeScript support?</strong></summary>
+<br/>
+Coming in the next release. For now use JSDoc annotations.
 </details>
 
 <details>
-<summary><strong>What Node.js version is required?</strong></summary>
-
-Node.js 18 or higher. AuthStack uses ES modules and top-level await.
-
-</details>
-
-<details>
-<summary><strong>Can I customize validation rules?</strong></summary>
-
-Custom validation hooks are on the roadmap. Current rules follow industry best practices and cover 99% of use cases.
-
+<summary><strong>What Node.js version?</strong></summary>
+<br/>
+Node.js 18 or higher — AuthStack uses ES modules and top-level await.
 </details>
 
 ---
@@ -673,12 +536,15 @@ Custom validation hooks are on the roadmap. Current rules follow industry best p
 
 PRs are welcome!
 
-1. Fork the repo
-2. Create your branch: `git checkout -b feature/my-feature`
-3. Commit: `git commit -m 'feat: add my feature'`
-4. Push and open a PR
+```bash
+git clone https://github.com/AKASHPATEL123500/AuthStack
+cd AuthStack
+npm install
+```
 
-Please open an issue first for major changes.
+1. Fork → branch → commit → PR
+2. Open an issue first for major changes
+3. Follow existing code style
 
 ---
 
@@ -688,12 +554,16 @@ MIT © [Akash Patel](https://github.com/AKASHPATEL123500)
 
 ---
 
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f0c29,50:302b63,100:24243e&height=120&section=footer&fontColor=ffffff" width="100%" />
+
 <div align="center">
 
-**[npm](https://www.npmjs.com/package/authstack) · [GitHub](https://github.com/AKASHPATEL123500/AuthStack) · [Issues](https://github.com/AKASHPATEL123500/AuthStack/issues)**
+<strong>AuthStack</strong> — auth done right, the first time.
 
-<br/>
+<br/><br/>
 
-<sub>Made with ❤️ — auth done right, the first time.</sub>
+<a href="https://www.npmjs.com/package/authstack">npm</a> ·
+<a href="https://github.com/AKASHPATEL123500/AuthStack">GitHub</a> ·
+<a href="https://github.com/AKASHPATEL123500/AuthStack/issues">Issues</a>
 
 </div>
