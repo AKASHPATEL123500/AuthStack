@@ -6,9 +6,9 @@ export const siginHandler = (config) => {
     try {
       const { username, password, email } = req.body;
 
-      const trimUsername = username.trim();
-      const trimPassword = password.trim();
-      const trimEmail = email.trim();
+      const trimUsername = username?.trim();
+      const trimEmail = email?.trim();
+      const trimPassword = password?.trim();
 
       const indentifire = trimEmail || trimUsername;
 
@@ -19,7 +19,10 @@ export const siginHandler = (config) => {
         });
       }
 
-      if (trimUsername > 50 || trimUsername < 5) {
+      if (
+        trimUsername &&
+        (trimUsername.length > 50 || trimUsername.length < 5)
+      ) {
         return res.status(400).json({
           success: false,
           message: "Username must be Max 5 char and Min 50 characters",
@@ -42,7 +45,7 @@ export const siginHandler = (config) => {
         });
       }
 
-      if (existingUser.isActive) {
+      if (!existingUser.isActive) {
         return res.status(403).json({
           success: false,
           message: "Account has been deactivated. Contact support",
@@ -66,10 +69,9 @@ export const siginHandler = (config) => {
         });
       }
 
-      const isPasswordMatch = await bcrypt.compare(
-        trimPassword,
-        existingUser.password,
-      );
+      const isPasswordMatch =
+        await existingUser.isPasswordMatched(trimPassword);
+
       if (!isPasswordMatch) {
         await existingUser.incrementLoginAttempts();
         return res.status(400).json({
@@ -119,8 +121,8 @@ export const siginHandler = (config) => {
 
       await existingUser.save({ validateBeforeSave: false });
 
-      const freshUser = await User.findeOne(existingUser._id).select(
-        "-password -refreshToken -accessToken",
+      const freshUser = await User.findById(existingUser._id).select(
+        "-password ",
       );
 
       const options = {
