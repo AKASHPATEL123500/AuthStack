@@ -14,9 +14,9 @@ import {
   verifyPasskeyRegistrationHandler,
 } from "./src/handlers/passkey.js";
 import { refreshTokenHandler } from "./src/handlers/refreshToken.js";
-import { siginHandler } from "./src/handlers/SignIn.js";
-import { signoutHandler } from "./src/handlers/SignOut.js";
-import { signupHandler } from "./src/handlers/SignUp.js";
+import { siginHandler } from "./src/handlers/signin.js";
+import { signoutHandler } from "./src/handlers/signout.js";
+import { signupHandler } from "./src/handlers/signup.js";
 import {
   generate2FASecretHandler,
   verify2FALoginHandler,
