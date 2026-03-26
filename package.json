@@ -1,6 +1,6 @@
 {
   "name": "authstack",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Production-ready authentication library for Node.js and Express",
   "type": "module",
   "main": "index.js",
