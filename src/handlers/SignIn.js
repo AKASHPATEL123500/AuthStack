@@ -42,21 +42,21 @@ export const siginHandler = (config) => {
         });
       }
 
-      if (!existingUser.isActive) {
+      if (existingUser.isActive) {
         return res.status(403).json({
           success: false,
           message: "Account has been deactivated. Contact support",
         });
       }
 
-      if (!existingUser.isDeleted) {
+      if (existingUser.isDeleted) {
         return res.status(403).json({
           success: false,
           message: "Account has been deleted. Contact support",
         });
       }
 
-      if (!existingUser.lockUntil && existingUser.lockUntil > Date.now()) {
+      if (existingUser.lockUntil && existingUser.lockUntil > Date.now()) {
         const remainingMinutes = Math.ceil(
           (existingUser.lockUntil - Date.now()) / (60 * 1000),
         );
