@@ -1,5 +1,5 @@
 import bcrypt from "bcryptjs";
-import generateDeviceFingerprint from "../utils/deviceFingerPrint";
+import generateDeviceFingerprint from "../utils/deviceFingerPrint.js";
 
 export const siginHandler = (config) => {
   return async (req, res) => {

@@ -2,14 +2,17 @@ import {
   forgotPasswordHandler,
   resetPasswordHandler,
   verifyForgotOtpHandler,
-} from "./src/handlers/forgotPassword";
-import { sendOtpEmailHandler, verifyEmailOtpHandler } from "./src/handlers/otp";
+} from "./src/handlers/forgotPassword.js";
+import {
+  sendOtpEmailHandler,
+  verifyEmailOtpHandler,
+} from "./src/handlers/otp.js";
 import {
   startPasskeyLoginHandler,
   startPasskeyRegistrationHandler,
   verifyPasskeyLoginHandler,
   verifyPasskeyRegistrationHandler,
-} from "./src/handlers/passkey";
+} from "./src/handlers/passkey.js";
 import { refreshTokenHandler } from "./src/handlers/refreshToken.js";
 import { siginHandler } from "./src/handlers/SignIn.js";
 import { signoutHandler } from "./src/handlers/SignOut.js";

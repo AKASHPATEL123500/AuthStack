@@ -1,5 +1,5 @@
-import { generateOtp } from "../utils/generateOtp.js";
 import { otpTemplate } from "../utils/emailTemplates.js";
+import { generateOtp } from "../utils/generateOtp.js";
 
 export const forgotPasswordHandler = (config) => {
   return async (req, res) => {
