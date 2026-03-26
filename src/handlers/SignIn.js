@@ -28,7 +28,7 @@ export const siginHandler = (config) => {
 
       const User = config.userModel;
 
-      const existingUser = await User.findeOne({
+      const existingUser = await User.findOne({
         $or: [{ email: indentifire }, { username: indentifire }],
       });
 
@@ -149,7 +149,7 @@ export const siginHandler = (config) => {
     } catch (error) {
       return res.status(500).json({
         success: false,
-        nessage: "Internal server error",
+        message: "Internal server error",
         error: error.message || "Something went worng",
       });
     }
